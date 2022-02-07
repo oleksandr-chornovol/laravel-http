@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/http-example', [ExampleController::class, 'index']);
+
+Route::resource('/votes', VoteController::class);
