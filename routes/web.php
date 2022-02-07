@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/login', function(Request $request) {
+    if (! $request->has('code')) {
+        return Socialite::with('spotify')->redirect();
+    } else {
+        return response()->json(Socialite::with('spotify')->user());
+    }
 });
