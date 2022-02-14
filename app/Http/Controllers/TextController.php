@@ -11,8 +11,7 @@ class TextController extends Controller
 {
     public function analyze(Request $request, TextAnalyzer $analyzer, FileFormatter $formatter)
     {
-//        $text = $request->file('text')->getContent();
-        $text = $request->text;
+        $text = $request->file('text')->getContent();
 
         if (Text::where('hash', md5($text))->exist()) {
             $analyzedText = Text::where('hash', md5($text))->first();
@@ -39,9 +38,9 @@ class TextController extends Controller
             ]);
         }
 
-//        $filePath = $formatter->generateFile($analyzedText->toArray(), $request->file_type);
-//        return response()->download($filePath);
-        return response($analyzedText);
+        $filePath = $formatter->generateFile($analyzedText->toArray(), $request->file_type);
+
+        return response()->download($filePath);
     }
 
     public function getAverageOfStatisticalData()
