@@ -64,7 +64,7 @@ class TextAnalyzer {
 
     public function getWords(string $text): array
     {
-        return array_unique(preg_split("/\s+/", $text));
+        return array_unique(preg_split('/\s+/', $text));
     }
 
     public function getSentences(string $text): array
