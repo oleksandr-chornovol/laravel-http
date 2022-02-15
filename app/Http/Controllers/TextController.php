@@ -39,6 +39,7 @@ class TextController extends Controller
         }
 
         $filePath = $formatter->generateFile($analyzedText->toArray(), $request->file_type);
+
         return response()->download($filePath);
     }
 
